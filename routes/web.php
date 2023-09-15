@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EmployeControleur;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +15,24 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-
     return view('home');
 });
+
+
+Route::get('/ajouterEmploye',function(){
+    return view("vues/formEmploye");
+});
+
+Route::post('/postEmploye',[EmployeControleur::class,'postAjouterEmploye']);
+Route::get('/listerEmploye',[EmployeControleur::class,'listerEmployes']);
+Route::get('/modifierEmploye/{id}',[EmployeControleur::class,'modifier']);
+
+Route::post('/postmodifierEmploye/{id}', [
+    'uses' => 'App\Http\Controllers\EmployeControleur@postmodificationEmploye',
+    'as' => 'postmodifierEmploye'
+]);
+
+
+
+
+
