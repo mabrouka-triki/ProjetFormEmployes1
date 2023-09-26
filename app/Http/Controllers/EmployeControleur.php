@@ -78,5 +78,21 @@ class EmployeControleur extends Controller
             return view('vues/error', compact('monErreur'));
         }
     }
+    public function modifier($id)
+    {
+        try {
+            $unEmployeService = new ServiceEmploye();
+            $unEmploye = $unEmployeService->getEmploye($id);
+
+            return view('vues/formEmployeModifier', compact('unEmploye'));
+
+        } catch (MonException $e) {
+            $monErreur = $e->getMessage();
+            return view('vues/error', compact('monErreur'));
+        } catch (Exception $e) {
+            $monErreur = $e->getMessage();
+            return view('vues/error', compact('monErreur'));
+        }
+    }
 
 }
